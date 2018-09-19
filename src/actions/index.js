@@ -1,3 +1,20 @@
+import axios from 'axios';
+
+export function fetchPeople() {
+    
+    const request = 
+    axios
+    .get ('https://swapi.co/api/people');
+
+    return (dispatch) => {
+        request.then(({data}) => {
+            dispatch({ type: 'FETCH_PEOPLE', payload: data})
+        });
+    };
+}
+
+
+
 // we'll need axios
 
 // we'll need to create 3 different action types here.
