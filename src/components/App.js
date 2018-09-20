@@ -5,11 +5,11 @@ import logo from '../logo.svg';
 import '../styles/App.css';
 // pull in actions from action/index
 
-import { fetchPeople } from '../actions/index';
+import { fetchChars } from '../actions/index';
 
 class App extends Component {
   componentDidMount() {
-    this.props.fetchPeople();
+    this.props.fetchChars();
   }
   render() {
     return (
@@ -28,8 +28,17 @@ class App extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+
+    chars: state.chars,
+    error: state.error,
+    fetchChars: state.fetchChars
+  };
+};
+
 // our mapDispatchToProps needs to have two properties inherited from state
 // the chars and the fetching boolean
-export default connect(mapStateToProps, {fetchPeople} 
+export default connect( mapStateToProps, {fetchChars} 
   /* actions go here */
 )(App);

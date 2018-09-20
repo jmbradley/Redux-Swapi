@@ -1,17 +1,27 @@
 import axios from 'axios';
 
-export function fetchPeople() {
-    
-    const request = 
-    axios
-    .get ('https://swapi.co/api/people');
 
-    return (dispatch) => {
-        request.then(({data}) => {
-            dispatch({ type: 'FETCH_PEOPLE', payload: data})
-        });
+export const FETCHING_CHARS = 'FETCHING_CHARS';
+export const CHARS_FETCHING_SUCCESS = 'CHARS_FETCHING_SUCCESS';
+export const  CHARS_FETCHING_ERROR = 'CHARS_FETCHING_ERROR';
+
+export const fetchChars = () => {
+    
+    return dispatch => { 
+        dispatch({ type: 'FETCHING_CHARS' })
+
+    axios
+    .get ('https://swapi.co/api/people/')
+    .then(response => {
+        dispatch({ type: 'CHARS_FETCHING_SUCCESS', payload: response.data.message });
+    })
+    .catch(err => {
+        console.log(err);
+        dispatch({ type: 'CHARS_FETCHING_ERROR'});
+
+    });
     };
-}
+};
 
 
 
