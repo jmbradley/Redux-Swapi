@@ -23,6 +23,7 @@ class App extends Component {
               return <li key={char.name}>{char.name}</li>;
             })}
           </ul>
+
         )}
       </div>
     );
@@ -30,6 +31,7 @@ class App extends Component {
 }
 
 const mapStateToProps = state => {
+  console.log(state);
   return {
 
     chars: state.chars,
